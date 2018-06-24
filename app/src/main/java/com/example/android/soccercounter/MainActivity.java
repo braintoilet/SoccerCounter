@@ -1,11 +1,12 @@
 package com.example.android.soccercounter;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.TextView;
 
-import com.example.android.soccercounter.R;
+import butterknife.BindView;
+import butterknife.ButterKnife;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -14,80 +15,79 @@ public class MainActivity extends AppCompatActivity {
     public int foulsTeamA = 0;
     public int foulsTeamB = 0;
 
+    @BindView(R.id.team_a_goals)
+    TextView textTeamAGoals;
+
+    @BindView(R.id.team_b_goals)
+    TextView textTeamBGoals;
+
+    @BindView(R.id.team_a_fouls)
+    TextView textTeamAFouls;
+
+    @BindView(R.id.team_b_fouls)
+    TextView textTeamBFouls;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        ButterKnife.bind(this);
     }
 
     /**
      * Adds a goal for Team A.
      */
     public void addGoalTeamA(View view){
-        goalsTeamA++;
-        displayForTeamA();
+        goalsTeamA++; //add +1
+
+        //Show goals
+        textTeamAGoals.setText(String.valueOf(goalsTeamA));
     }
 
     /**
      * Adds a goal for Team B.
      */
     public void addGoalTeamB(View view){
-        goalsTeamB++;
-        displayForTeamB();
+        goalsTeamB++; //add +1
+
+        //Show goals
+        textTeamBGoals.setText(String.valueOf(goalsTeamB));
     }
 
     /**
      * Adds a foul for Team A.
      */
     public void addFoulTeamA(View view){
-        foulsTeamA++;
-        displayForTeamA();
+        foulsTeamA++; //add +1
+
+        //Show fouls, with formatted string resource
+        textTeamAFouls.setText(getString(R.string.fouls, foulsTeamA));
     }
 
     /**
      * Adds a foul for Team B.
      */
     public void addFoulTeamB(View view){
-        foulsTeamB++;
-        displayForTeamB();
+        foulsTeamB++; //add +1
+
+        //Show fouls, with formatted string resource
+        textTeamBFouls.setText(getString(R.string.fouls, foulsTeamB));
     }
 
     /**
      * Resets the app.
      */
     public void reset(View view){
+        //Reset the internal helper variables
         goalsTeamA = 0;
         goalsTeamB = 0;
         foulsTeamA = 0;
         foulsTeamB = 0;
 
-        displayForTeamA();
-        displayForTeamB();
-    }
-
-    /**
-     * Displays the given goals and fouls for Team A.
-     */
-    public void displayForTeamA() {
-        //Show goals
-        TextView scoreView = (TextView) findViewById(R.id.team_a_goals);
-        scoreView.setText(String.valueOf(goalsTeamA));
-
-        //Show fouls
-        scoreView = (TextView) findViewById(R.id.team_a_fouls);
-        scoreView.setText("Fouls: " + String.valueOf(foulsTeamA));
-    }
-
-    /**
-     * Displays the given goals and fouls for Team B.
-     */
-    public void displayForTeamB() {
-        //Show Goals
-        TextView view = (TextView) findViewById(R.id.team_b_goals);
-        view.setText(String.valueOf(goalsTeamB));
-
-        //Show fouls
-        view = (TextView) findViewById(R.id.team_b_fouls);
-        view.setText("Fouls: " + String.valueOf(foulsTeamB));
+        //Reset the textViews back to its default values
+        textTeamAGoals.setText(R.string.goals_zero);
+        textTeamBGoals.setText(R.string.goals_zero);
+        textTeamAFouls.setText(R.string.fouls_zero);
+        textTeamBFouls.setText(R.string.fouls_zero);
     }
 }

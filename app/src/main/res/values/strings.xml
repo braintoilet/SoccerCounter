@@ -1,3 +1,11 @@
 <resources>
-    <string name="app_name">SoccerCounter</string>
+    <string name="app_name">Soccer Counter</string>
+    <string name="team_a_hint">Team A</string>
+    <string name="goals_zero">0</string>
+    <string name="fouls_zero">Fouls: 0</string>
+    <string name="fouls">Fouls: %1d</string>
+    <string name="button_add_goal">Add Goal</string>
+    <string name="button_add_foul">Add Foul</string>
+    <string name="team_b_hint">Team B</string>
+    <string name="button_reset">reset</string>
 </resources>
