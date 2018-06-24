@@ -1,5 +1,14 @@
 # SoccerCounter
-My project for lesson 9 of the Android Basics Udacity course.
+InventoryApp for the Udacity Android Basics Nanodegree
 
-You can find the main repository of the course here:
-https://github.com/braintoilet/AndroidBasicsUdacity
+## Screenshots
+![MainActivity Empty](http://grassnick.eu/img/abnd/soccer1.png)
+![MainActivity](http://grassnick.eu/img/abnd/soccer2.png)
+
+
+## Credits
+* libraries: [ButterKnife](https://jakewharton.github.io/butterknife/)
+
+## Thank's
+I would like to thank [Udacity](http://udacity.com) and [Google](http://google.com) for my Scholarship.
+Your courses are great and i learned a lot!
