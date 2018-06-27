@@ -1,6 +1,7 @@
 package com.example.android.soccercounter;
 
 import android.os.Bundle;
+import android.os.PersistableBundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.TextView;
@@ -10,10 +11,10 @@ import butterknife.ButterKnife;
 
 public class MainActivity extends AppCompatActivity {
 
-    public int goalsTeamA = 0;
-    public int goalsTeamB = 0;
-    public int foulsTeamA = 0;
-    public int foulsTeamB = 0;
+    private int goalsTeamA = 0;
+    private int goalsTeamB = 0;
+    private int foulsTeamA = 0;
+    private int foulsTeamB = 0;
 
     @BindView(R.id.team_a_goals)
     TextView textTeamAGoals;
@@ -32,7 +33,37 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
+
+        if(savedInstanceState != null){
+            goalsTeamA = savedInstanceState.getInt("goalsTeamA");
+            goalsTeamB = savedInstanceState.getInt("goalsTeamB");
+            foulsTeamA = savedInstanceState.getInt("foulsTeamA");
+            foulsTeamB = savedInstanceState.getInt("foulsTeamB");
+        }
     }
+
+    @Override
+    public void onRestoreInstanceState(Bundle savedInstanceState) {
+        goalsTeamA = savedInstanceState.getInt("goalsTeamA");
+        goalsTeamB = savedInstanceState.getInt("goalsTeamB");
+        foulsTeamA = savedInstanceState.getInt("foulsTeamA");
+        foulsTeamB = savedInstanceState.getInt("foulsTeamB");
+
+        textTeamAGoals.setText(String.valueOf(goalsTeamA));
+        textTeamBGoals.setText(String.valueOf(goalsTeamB));
+        textTeamAFouls.setText(getString(R.string.fouls, foulsTeamA));
+        textTeamBFouls.setText(getString(R.string.fouls, foulsTeamB));
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        outState.putInt("goalsTeamA", goalsTeamA);
+        outState.putInt("goalsTeamB", goalsTeamB);
+        outState.putInt("foulsTeamA", foulsTeamA);
+        outState.putInt("foulsTeamB", foulsTeamB);
+        super.onSaveInstanceState(outState);
+    }
+
 
     /**
      * Adds a goal for Team A.
